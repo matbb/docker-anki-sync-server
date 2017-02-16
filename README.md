@@ -9,7 +9,7 @@ docker run \
 	-p 27701:27701 \
 	-d \
 	--restart=unless-stopped \
-	anki-server
+	matb/docker-anki-sync-server
 ```
 
 Configuration 
@@ -30,16 +30,14 @@ it takes to restart the docker container.
 ### First run
 
 ### Adding a user
-Currently there is no way to add a user to the server over the web that I am aware of, 
-so I suggest you run the script in `server` folder and create an account for yourself :
+As I am not aware of any method to add a user over the web,
+I suggest you run the script in `server` folder manually and create an account for yourself :
 ```bash 
 $ /path/to/server/code/ankiserverctl.py adduser myusername
 ```
-and then enter your passsword when prompted.
-Copy the auth.db into your data folder before starting the container.
-You don't have to have Anki or Anki-sync-server installed for this to work, 
-it is simplest to create the authentication database on your personal computer 
-and copy the file over to the server.
+This will create an authentication file `auth.db` 
+and databases with the user's data in `collections`.
+Copy both into the data folder before starting the container.
 
 ### Configuring Anki Sync Server
 In order for the image to work, Anki sync server must listen on all interfaces.
