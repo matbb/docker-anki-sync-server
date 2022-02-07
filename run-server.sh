@@ -16,12 +16,13 @@ echo "Cloning anki server from ${ANKI_SERVER_URL}"
 cd /anki/server 
 git clone --recursive "${ANKI_SERVER_URL}" . || :
 git submodule update --recursive --remote || :
-git pull origin master
-git checkout master
+
 if [ "$ANKI_SERVER_VCS_SRC" == "branch" ]
 then 
+        git pull origin "$ANKI_SERVER_BRANCH"
 	git checkout "$ANKI_SERVER_BRANCH"
 else
+        git pull origin "$ANKI_SERVER_BRANCH"
 	git checkout "tags/${ANKI_SERVER_TAG}"
 fi
 git submodule update
